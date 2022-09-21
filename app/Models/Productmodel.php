@@ -1,7 +1,7 @@
 <?php namespace App\Models; 
-    use CodeIgniter\Model;
+    use CodeIgniter\Model; 
 
-    class Productmodel extends Model
+    class Productmodel extends Model 
     {
         protected $table = ['produit'];
         protected $allowedFields = ['boutique', 'rayon', 'categorie', 'souscategorie', 'nom', 'reference', 'marque', 'prix', 'photo01', 'photo02', 'photo03', 'photo04', 'photo05', 'descriptifcourt', 'descriptiflong'];
@@ -79,6 +79,13 @@
             $this->join('rayon', 'produit.rayon=rayon.id', 'left');
             $this->limit($limit);
             $this->where('souscategorie.id', $idsouscategory);
+            return $this->find();
+        }
+
+        public function linkrayon($idcategorie)
+        {
+            $this->join('rayon', 'produit.rayon=rayon.id');
+            $this->where('produit.categorie', $idcategorie);
             return $this->find();
         }
     }

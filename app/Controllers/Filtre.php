@@ -2,6 +2,7 @@
     use App\Models\RayonModel;
     use App\Models\CategorieModel;
     use App\Models\SouscategorieModel;
+    use App\Models\Productmodel;
 
     class Filtre extends BaseController
     {
@@ -14,6 +15,16 @@
                 'categories' => $rayon->linkrayoncategorie($idrayons)
             ];
             return $assets->productcategories($data1);
+        }
+        public function changerayon2($idcategorie) 
+        {
+            $assets  = model(Assets::class);
+            $produit = model(Productmodel::class); 
+            $data = [
+                'produits' => $produit->linkrayon($idcategorie)
+            ];
+            // return $assets->productrayons2($data);
+            return view('filtre/productrayons2', $data);
         }
     // ---------------  CHANGER LE NOM DE LA SOUS CATEGORIE DANS LE FILTRE, SELON LA CATEGORIE
         public function changecategorie($idcategorie)

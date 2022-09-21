@@ -1,5 +1,7 @@
 <?php namespace App\Controllers; 
     use App\Models\RayonModel;
+    use App\Models\CategorieModel;
+    use App\Models\SouscategorieModel;
     use App\Controllers\Produit;
     use App\Controllers\Filtre;
 
@@ -15,13 +17,17 @@
         }
         public function mystore()
         {
-            $rayon = model(RayonModel::class);
-            $products = model(Produit::class); 
             $assets = model(Assets::class);
+            $products = model(Produit::class); 
+            $rayon = model(RayonModel::class);
+            $categories = model(CategorieModel::class);
+            $souscategories = model(SouscategorieModel::class);
             $data = [
                 'pagetitle' => 'Mon magasin',
                 'rayons' => $rayon->getRayon(),
                 'rayon' => $rayon->getSelectedRayon(),
+                'categories' => $categories->getCategory(),
+                'souscategories' => $souscategories->getSouscategory(),
                 'products' => $products->getSelectedProduct($idrayon=null, $limit=10)
             ];
             return view('Templates/header', $data) //Ceci est le menu

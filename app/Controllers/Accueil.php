@@ -1,6 +1,8 @@
 <?php namespace App\Controllers;
     use App\Controllers\Addons;
     use App\Models\RayonModel;
+    use App\Models\CategorieModel;
+    use App\Models\SouscategorieModel;
     
 class Accueil extends BaseController
 {
@@ -9,22 +11,21 @@ class Accueil extends BaseController
         $assets = model(Assets::class);
         $rayon = model(RayonModel::class); 
         $products = model(Produit::class);
+        $categories = model(CategorieModel::class);
+        $souscategories = model(SouscategorieModel::class);
         $data = 
         [
             'pagetitle' => 'Marketplace',
             'rayons' => $rayon->getRayon(),
             'rayon' => $rayon->getSelectedRayon(),
+            'categories' => $categories->getCategory(),
+            'souscategories' => $souscategories->getSouscategory(),
             'products' => $products->getSelectedProduct(null, 6)
         ];
         return view('Templates/header', $data)
         . view('accueil')
-        . $assets->homenavmenu() 
-        . $assets->littlehorizontalcard() 
-        . $assets->homebanner()
-        . $assets->allcategories($data)
         . $assets->productfilter()
         . $assets->allproducts()
-        . $assets->threenews()
         . view('Templates/footer');
     }
 

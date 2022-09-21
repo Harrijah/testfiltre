@@ -17,16 +17,26 @@
                                 <div class="selectcategories displaymeblock shadow">
                                     <div class="categorieselect01">
                                         <label class="displaymeblock" for="categorie02">Rayon</label>
-                                        <?php echo App\Controllers\Assets::productrayons(); ?>
+                                        <?php echo App\Controllers\Assets::productrayons(); ?> 
                                     </div>
                                 <div class="splitcategories displaymeblock">
                                     <div class="splitedcategorie01">
                                         <label class="displaymeblock" for="categorie02">Catégorie</label>
-                                            <select name="categorie" id="" url="<?php echo base_url('filtre/changecategorie'); ?>" url2="<?php echo base_url('filtre/getResultat'); ?>" class="selectcategory form-control"></select>
+                                            <!-- <select name="categorie" id="" url="<?php echo base_url('filtre/changecategorie'); ?>" url2="<?php echo base_url('filtre/getResultat'); ?>" class="selectcategory form-control"></select> -->
+                                            <select name="categorie" class="form-control">
+                                                <?php foreach($categories as $categorie): ?>
+                                                    <option value='<?php echo $categorie['id']; ?>'><?php echo $categorie['categorie']; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                     </div>
                                     <div class="splitedcategorie02">
                                         <label  class="displaymeblock" for="categorie03">Sous-catégorie</label>
-                                            <select name="souscategorie" id="" url="<?php echo base_url('filtre/getResultat'); ?>" class="selectsouscategorie form-control"></select>
+                                            <!-- <select name="souscategorie" id="" url="<?php echo base_url('filtre/getResultat'); ?>" class="selectsouscategorie form-control"></select> -->
+                                            <select name="souscategorie" class="form-control">
+                                                <?php foreach($souscategories as $souscategorie): ?>
+                                                    <option value='<?php echo $souscategorie['id']; ?>'><?php echo $souscategorie['souscategorie']; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                     </div>
                                 </div>
                                     

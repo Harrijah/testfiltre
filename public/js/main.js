@@ -1,7 +1,28 @@
 $(document).ready(function() {
     changecategory();
+    changerayon2();
     changesouscategorie();
     /*  ****************     Activer le filtre de produits   ************ */
+    function changerayon2()
+    {
+        $('.selectcategory3').on('change', function(e){
+            e.preventDefault();
+            var optionselect = this.options[this.selectedIndex].value;
+            var myurl03 = $(this).attr('url')+'/'+optionselect;
+            $.ajax({
+                url: myurl03,
+                type: 'post',
+                data: {}
+            })
+            .done(function(data){
+                $('#testidselect').html(data);
+                $('.selectsouscategorie').html("<option></option>");
+            })
+            .fail(function(errorMessage){
+                alert(errorMessage);
+            });
+        });
+    }
     function changecategory()
     {
         $('.selectrayon').on('change', function(e){

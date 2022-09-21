@@ -65,6 +65,10 @@
         {
             return view('filtre/productrayons');
         }
+        public static function productrayons2($data) // Boucle : liste des rayons  avec la balise "SELECT"
+        {
+            return view('filtre/productrayons2');
+        }
         public static function productcategories($data) // Boucle : liste des catégories dans la balise "SELECT"
         {
             return view('filtre/productcategories', $data);

@@ -16,5 +16,6 @@
             $this->where('categorie.id', $idcategorie);
             return $this->findAll();
         }
+        
     }
 
